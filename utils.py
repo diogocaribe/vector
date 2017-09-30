@@ -9,7 +9,7 @@ def return_shp_path_from_folder(folder_path):
 
     extention = '.shp'
 
-    search_format = '{}{}{}'.format(folder_path,'/*', extention)
+    search_format = '{}{}{}'.format(folder_path,'*', extention)
 
     return glob.glob(search_format)
 

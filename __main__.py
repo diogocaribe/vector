@@ -1,15 +1,15 @@
 from Vector import Vector
-import pandas as pd
-import geoutils as gu
+import intersection as i
 import utils as u
 import time
 
-path = '/media/dogsousa/56A22ED6A22EBA7F/mestrado_artigo_final/SHP/'
 
-municipio_path = '{}{}'.format(path, 'municipios/municipios_regioes.shp')
+path = '../vector/'
 
-# landuse_path = '{}{}{}'.format(path, '/bruto/215_070', '/')
-landuse_path = '/media/dogsousa/56A22ED6A22EBA7F/mestrado_artigo_final/SHP/bruto/CORRIGIDO/'
+municipio_path = '{}{}'.format(path, 'municipio/municipio.shp')
+
+landuse_path = '{}{}'.format(path, 'landuse/')
+
 
 if __name__ == '__main__':
 
@@ -20,10 +20,10 @@ if __name__ == '__main__':
 
         landuse_date = Vector(shp_path).get_basename()
 
-        print(shp_path)
-        print(municipio_path)
-        inter = gu.intersection_shape_idx(municipio_path, shp_path)
-
+        start = time.time()
+        inter = i.intersection_shape_idx(municipio_path, shp_path)
+        end = time.time()
+        print(end-start)
         inter['data'] = landuse_date
 
         print(inter)
