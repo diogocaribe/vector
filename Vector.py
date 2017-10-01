@@ -6,7 +6,6 @@ from shapely.geometry import shape, MultiPolygon, Polygon, LineString, MultiLine
 import rtree
 
 
-
 class Vector:
 
     def __init__(self, vector_path):

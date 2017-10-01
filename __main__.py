@@ -2,7 +2,7 @@ from Vector import Vector
 import intersection as i
 import utils as u
 import time
-
+import intersection_thread as it
 
 path = '../vector/'
 
@@ -21,7 +21,8 @@ if __name__ == '__main__':
         landuse_date = Vector(shp_path).get_basename()
 
         start = time.time()
-        inter = i.intersection_shape_idx(municipio_path, shp_path)
+        inter = it.intersection_shape_idx(municipio_path, shp_path)
+        # inter = i.intersection_shape_idx(municipio_path, shp_path)
         end = time.time()
         print(end-start)
         inter['data'] = landuse_date
