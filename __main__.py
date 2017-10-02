@@ -1,8 +1,6 @@
 from Vector import Vector
 import intersection as i
 import utils as u
-import time
-import intersection_thread as it
 
 path = '../vector/'
 
@@ -20,11 +18,12 @@ if __name__ == '__main__':
 
         landuse_date = Vector(shp_path).get_basename()
 
-        start = time.time()
-        inter = it.intersection_shape_idx(municipio_path, shp_path)
-        # inter = i.intersection_shape_idx(municipio_path, shp_path)
-        end = time.time()
-        print(end-start)
-        inter['data'] = landuse_date
+        inter = i.intersection_shape_idx(municipio_path, shp_path)
 
-        print(inter)
+        inter['year'] = landuse_date[:4]
+        inter['month'] = landuse_date[5:6]
+        inter['day'] = landuse_date[6:8]
+
+        u.save_pandas_csv(dataframe=inter, file_name=landuse_date)
+
+        print("ok")

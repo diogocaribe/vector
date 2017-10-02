@@ -9,10 +9,9 @@ def intersection_shape_idx(filename1, filename2):
     result = pd.DataFrame({'nome': [],
                            'Class_Name': [],
                            'geometry': [],
-                           'int_area_m': [],
-                           'area_munic': []})
+                           'area_class': []})
 
-    with fiona.open(filename1, 'r') as layer1:
+    with fiona.open(filename1, 'r', encoding='UTF-8') as layer1:
 
         with fiona.open(filename2, 'r') as layer2:
 
@@ -33,8 +32,7 @@ def intersection_shape_idx(filename1, filename2):
                             intersect = pd.DataFrame({'nome': [feat1['properties']['nome']],
                                                       'Class_Name': [feat2['properties']['Class_Name']],
                                                       'geometry': [geom1.intersection(geom2).to_wkt()],
-                                                       'int_area_m': [geom1.intersection(geom2).area],
-                                                      'area_munic': geom1.area},
+                                                       'area_class': [geom1.intersection(geom2).area]},
                                                      index = [feat2['id']])
                             result = pd.concat([result, intersect])
 
@@ -48,8 +46,7 @@ def intersection_shape_idx(filename1, filename2):
                             intersect = pd.DataFrame({'nome': [feat1['properties']['nome']],
                                                       'Class_Name': [feat2['properties']['Class_Name']],
                                                       'geometry': [geom1.intersection(geom2).to_wkt()],
-                                                       'int_area_m': [geom1.intersection(geom2).area],
-                                                      'area_munic': geom1.area},
+                                                       'area_class': [geom1.intersection(geom2).area]},
                                                      index = [feat2['id']])
                             result = pd.concat([result, intersect])
 
